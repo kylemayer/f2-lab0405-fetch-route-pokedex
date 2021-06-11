@@ -3,6 +3,7 @@ import request from 'superagent';
 import './App.css';
 import Header from './Header.js';
 import PokeList from './PokeList.js';
+// import Spinner from './Spinner.js';
 
 
 export default class App extends Component {
@@ -32,7 +33,7 @@ export default class App extends Component {
     return(
     <div className="App">
       <Header />
-      <PokeList pokemonData={this.state.pokemonData} />
+      <PokeList pokeData={this.state.pokemonData}/>
     </div>
     )
   }
