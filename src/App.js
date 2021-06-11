@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 import './App.css';
-import Header from './Header';
-import PokeList from './PokeList';
+import Header from './Header.js';
+import PokeList from './PokeList.js';
 
 
 export default class App extends Component {
@@ -13,24 +13,26 @@ export default class App extends Component {
 
   }
 
+  componentDidMount = async () => {
+    await this.fetch();
+}
 
-  fetchPokeData = async () => {
+  fetch = async () => {
 
-    const URL = this.state.query
+    const URL = (this.state.query)
       ? `https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${this.state.query}`
-      : `https://pokedex-alchemy.herokuapp.com/api/pokedex`
+      : `https://pokedex-alchemy.herokuapp.com/api/pokedex`;
 
         const data = await request.get(URL)
-        this.setState({ pokemonData: data.body.results});
+        this.setState({pokemonData: data.body.results});
   }
-
 
 
   render() {
     return(
     <div className="App">
       <Header />
-      <PokeList />
+      <PokeList pokemonData={this.state.pokemonData} />
     </div>
     )
   }
