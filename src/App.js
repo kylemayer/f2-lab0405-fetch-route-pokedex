@@ -35,7 +35,7 @@ handleClick = async () => {
   fetch = async () => {
     this.setState({loading : true});
 
-    const URL = (this.state.query)
+    const URL = (this.state.query || this.state.type)
       ? `https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${this.state.query}&type_1=${this.state.type}`
       : `https://pokedex-alchemy.herokuapp.com/api/pokedex`;
 
