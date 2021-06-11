@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-
+import pokedex from './Pokedex.png';
 export default class Header extends Component {
     render() {
         return (
-            <div>
-                <h1>POKEDEX</h1>
+            <div className="head-img">
+                <img src={pokedex} alt="Pokedex" />
             </div>
         )
     }

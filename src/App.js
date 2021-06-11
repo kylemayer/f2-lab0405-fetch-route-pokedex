@@ -6,7 +6,7 @@ import PokeList from './PokeList.js';
 import Dropdown from './Dropdown.js';
 import Spinner from './Spinner.js';
 
-
+const sleep = (x) => new Promise((res, rej) => setTimeout(() => { res() }, x))
 export default class App extends Component {
   state = {
     pokemonData: [],
@@ -40,6 +40,7 @@ handleClick = async () => {
       : `https://pokedex-alchemy.herokuapp.com/api/pokedex`;
 
         const data = await request.get(URL)
+        await sleep(1500);
         this.setState({loading : false});
         this.setState({pokemonData: data.body.results});
   }
