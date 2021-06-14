@@ -14,6 +14,7 @@ state = {
     query: '',
     type: '',
     direction: '',
+    page: 1,
 }
 
 componentDidMount = async () => {
@@ -32,6 +33,16 @@ handleDirectionChange = (e) => {
     this.setState({direction: e.target.value})
 }
 
+nextPage = async (e) => {
+    await this.setState({page: this.state.page +1})
+    this.fetch()
+}
+
+prevPage = async (e) => {
+    await this.setState({page: this.state.page -1})
+    this.fetch()
+}
+
 handleClick = async () => {
     await this.fetch()
 }
@@ -39,7 +50,7 @@ handleClick = async () => {
 fetch = async () => {
     this.setState({loading : true})
 
-    const URL = (this.state.query || this.state.type || this.state.direction)
+    const URL = (this.state.query || this.state.type || this.state.direction || this.state.page)
     ? `https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${this.state.query}&type_1=${this.state.type}&direction=${this.state.direction}`
     : `https://pokedex-alchemy.herokuapp.com/api/pokedex`;
 
@@ -58,6 +69,14 @@ render() {
             <DropdownType handleType={this.handleTypeChange}/>
             <DropdownDir handleDirection={this.handleDirectionChange}/>
             <button onClick={this.handleClick}>SEARCH 🔍</button>
+            {this.state.page - 1 > 0 && (
+                    <button onClick={this.prevPage}>
+                        Prev Page ({this.state.page - 1})
+                    </button>
+                )}
+                <button onClick={this.nextPage}>
+                    Next Page ({this.state.page + 1})
+                </button>
             {this.state.loading
                 ? <Spinner />
                 : <PokeList pokeData={this.state.pokemonData}/>}

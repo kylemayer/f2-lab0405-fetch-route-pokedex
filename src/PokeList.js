@@ -6,18 +6,17 @@ export default class PokeList extends Component {
     render() {
         return (
             <div className="pokemon-info"
-            style={{ backgroundImage: `url(${bgImg})`
-            }}>
+            style={{ backgroundImage: `url(${bgImg})`}}>
                 {this.props.pokeData.map(poke => (
-                <Link to={`/pokemon/${poke.id}`}>
+                <Link key={poke.id} to={`/pokemon/${poke._id}`}>
                     <PokeItem
-                name={poke.pokemon}
-                url={poke.url_image}
-                type={poke.type_1}
-                height={poke.height}
-                weight={poke.weight}
-                shape={poke.shape}
-                ability_hidden={poke.ability_hidden}/>
+                        name={poke.pokemon}
+                        url={poke.url_image}
+                        type={poke.type_1}
+                        height={poke.height}
+                        weight={poke.weight}
+                        shape={poke.shape}
+                        ability_hidden={poke.ability_hidden}/>
                 </Link>))}
             </div>
         )

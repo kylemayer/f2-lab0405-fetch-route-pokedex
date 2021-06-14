@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import request from 'superagent';
+import React, {  } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Header from './Header.js';
 import PokeIndex from './PokeIndex.js';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './Home.js';
 import PokemonDetails from './PokemonDetails.js';
 
