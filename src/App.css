@@ -78,3 +78,31 @@ h3 {
 .head-img {
   margin-top: 15px;
 }
+
+.poke-img:hover {
+  background-color: rgba(14, 99, 226, 0.644);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+  color: royalblue;
+  text-decoration: none;
+}
+
+.nav-links:hover {
+  color: orange;
+}
+
+
+
+.index-image {
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  align-items: center;
+  margin: auto;
+
+}
