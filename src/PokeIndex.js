@@ -90,6 +90,14 @@ render() {
             {this.state.loading
                 ? <Spinner />
                 : <PokeList pokeData={this.state.pokemonData}/>}
+            {this.state.page - 1 > 0 && (
+                <button onClick={this.prevPage}>
+                    Prev Page ({this.state.page - 1})
+                </button>
+            )}
+            <button onClick={this.nextPage}>
+                Next Page ({this.state.page + 1})
+            </button>
         </div>
         )
     }

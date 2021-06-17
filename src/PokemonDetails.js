@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import request from 'superagent'
+import Spinner from './Spinner'
 
 
 
@@ -30,12 +31,15 @@ export default class PokemonDetails extends Component {
 
     render() {
         return (
-
             <div>
-                {this.state.loading && <h2>Loading...</h2>}
-                <h3>Pokemon Analysis</h3>
-                <p>{this.props.match.params.pokeId}</p>
-                <p>{this.state.pokemonDetail.pokemon}</p>
+                {this.state.loading && <Spinner />}
+                    {!this.state.loading && (
+                        <>
+                            <h3>Pokemon Analysis</h3>
+                            <p>{this.props.match.params.pokeId}</p>
+                            <p>{this.state.pokemonDetail.pokemon}</p>
+                        </>
+                    )}
             </div>
         )
     }
