@@ -50,14 +50,24 @@ handleClick = async () => {
 fetch = async () => {
     this.setState({loading : true})
 
-    const URL = (this.state.query || this.state.type || this.state.direction || this.state.page)
-    ? `https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${this.state.query}&type_1=${this.state.type}&direction=${this.state.direction}`
-    : `https://pokedex-alchemy.herokuapp.com/api/pokedex`;
+    const URL = new URLSearchParams({
+        sort: 'pokemonData',
+        direction: this.state.direction,
+        page: this.state.page,
+        type_1: this.state.type,
+    })
 
-        const data = await request.get(URL)
+    if (this.state.query) {
+        URL.set('pokemonData', this.state.query);
+    }
+
+    const {
+        body: { results: data }
+    }   = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?${URL.toString()}`)
+
         await sleep(1500);
         this.setState({loading : false});
-        this.setState({pokemonData: data.body.results})
+        this.setState({pokemonData: data})
 }
 
 render() {
